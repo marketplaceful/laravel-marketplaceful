@@ -1,0 +1,71 @@
+{
+    "name": "marketplaceful/laravel-marketplaceful",
+    "description": "Laravel Marketplace",
+    "keywords": [
+        "marketplaceful",
+        "laravel-marketplaceful"
+    ],
+    "homepage": "https://github.com/marketplaceful/laravel-marketplaceful",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Oliver Jimenez-Servin",
+            "email": "oliver@radiocubito.com",
+            "homepage": "https://marketplaceful.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/contracts": "^8.0",
+        "laravel/fortify": "^1.7",
+        "laravel/sanctum": "^2.6",
+        "livewire/livewire": "^2.0",
+        "spatie/laravel-ray": "^1.5",
+        "spatie/laravel-schemaless-attributes": "^1.8",
+        "moneyphp/money": "^3.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "pestphp/pest": "^1.0",
+        "phpunit/phpunit": "^9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marketplaceful\\": "src",
+            "Marketplaceful\\Database\\Factories\\": "database/factories"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Marketplaceful\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "psalm": "vendor/bin/psalm",
+        "test": "vendor/bin/pest --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marketplaceful\\MarketplacefulServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/marketplaceful"
+        },
+        {
+            "type": "other",
+            "url": "https://marketplaceful.com"
+        }
+    ]
+}
