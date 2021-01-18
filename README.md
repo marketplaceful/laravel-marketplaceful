@@ -1,44 +1,48 @@
-# Laravel Marketplace
+# Marketplaceful - Self-host your marketplace software
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marketplaceful/laravel-marketplaceful.svg?style=flat-square)](https://packagist.org/packages/marketplaceful/laravel-marketplaceful)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/marketplaceful/laravel-marketplaceful/run-tests?label=tests)](https://github.com/marketplaceful/laravel-marketplaceful/actions?query=workflow%3ATests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/marketplaceful/laravel-marketplaceful.svg?style=flat-square)](https://packagist.org/packages/marketplaceful/laravel-marketplaceful)
 
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A web platform for quickly building online marketplaces built on Laravel.
 
 ## Installation
 
-You can install the package via composer:
+1. Add the `marketplaceful:install` command to `post-autoload-dump` in `composer.json` .
 
-```bash
+``` json
+"post-autoload-dump": [
+    "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+    "@php artisan package:discover --ansi",
+    "@php artisan marketplaceful:install --ansi"
+],
+```
+
+2. Require `marketplaceful/laravel-marketplaceful`.
+
+``` bash
 composer require marketplaceful/laravel-marketplaceful
 ```
 
-You can publish and run the migrations with:
+3. Add the `InteractsAsMarketplaceUser` trait to your existing User model:
 
-```bash
-php artisan vendor:publish --provider="Marketplaceful\MarketplacefulServiceProvider" --tag="migrations"
+``` php
+namespace App\Models;
+
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Marketplaceful\Traits\InteractsAsMarketplaceUser;
+
+class User extends Authenticatable {
+
+    use InteractsAsMarketplaceUser;
+
+}
+```
+
+4. Run migrations.
+
+``` bash
 php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Marketplaceful\MarketplacefulServiceProvider" --tag="config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-## Usage
-
-```php
-$laravel-marketplaceful = new Marketplaceful\Marketplaceful();
-echo $laravel-marketplaceful->echoPhrase('Hello, Marketplaceful!');
 ```
 
 ## Testing
