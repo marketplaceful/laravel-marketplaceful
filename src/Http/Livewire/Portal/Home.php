@@ -2,8 +2,8 @@
 
 namespace Marketplaceful\Http\Livewire\Portal;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class Home extends Component
 {

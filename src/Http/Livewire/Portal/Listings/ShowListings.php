@@ -2,11 +2,9 @@
 
 namespace Marketplaceful\Http\Livewire\Portal\Listings;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Marketplaceful\Marketplaceful;
-use Marketplaceful\Models\Listing;
-use Illuminate\Support\Facades\Auth;
 
 class ShowListings extends Component
 {

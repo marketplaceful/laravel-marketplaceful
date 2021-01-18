@@ -2,8 +2,8 @@
 
 namespace Marketplaceful\Http\Livewire\Portal\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 use Marketplaceful\Actions\UpdateUserPassword;
 
 class UpdatePasswordForm extends Component

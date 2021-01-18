@@ -2,28 +2,28 @@
 
 namespace Marketplaceful;
 
-use Livewire\Livewire;
-use Laravel\Fortify\Fortify;
-use Marketplaceful\Models\Order;
-use Marketplaceful\Models\Listing;
-use Illuminate\Support\Facades\Gate;
-use Marketplaceful\Console\MakeUser;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Marketplaceful\Policies\UserPolicy;
-use Marketplaceful\Policies\OrderPolicy;
-use Marketplaceful\Console\InstallCommand;
-use Marketplaceful\Policies\ListingPolicy;
 use Illuminate\View\Compilers\BladeCompiler;
-use Marketplaceful\Http\Livewire\Portal\Welcome;
-use Marketplaceful\Http\Livewire\Portal\Profile\ShowProfile;
-use Marketplaceful\Http\Livewire\Portal\Listings\ShowListing;
-use Marketplaceful\Http\Livewire\Portal\Listings\ShowListings;
+use Laravel\Fortify\Fortify;
+use Livewire\Livewire;
+use Marketplaceful\Console\InstallCommand;
+use Marketplaceful\Console\MakeUser;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListingForm;
+use Marketplaceful\Http\Livewire\Portal\Listings\ShowListing;
+use Marketplaceful\Http\Livewire\Portal\Listings\ShowListings;
 use Marketplaceful\Http\Livewire\Portal\Listings\UpdateListingForm;
+use Marketplaceful\Http\Livewire\Portal\Profile\ShowProfile;
 use Marketplaceful\Http\Livewire\Portal\Profile\UpdatePasswordForm;
 use Marketplaceful\Http\Livewire\Portal\Profile\UpdateProfileInformationForm;
+use Marketplaceful\Http\Livewire\Portal\Welcome;
+use Marketplaceful\Models\Listing;
+use Marketplaceful\Models\Order;
+use Marketplaceful\Policies\ListingPolicy;
+use Marketplaceful\Policies\OrderPolicy;
+use Marketplaceful\Policies\UserPolicy;
 
 class MarketplacefulServiceProvider extends ServiceProvider
 {
