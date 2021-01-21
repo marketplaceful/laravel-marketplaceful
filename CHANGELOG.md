@@ -1,11 +1,13 @@
-# Changelog
+# Release Notes
 
-All notable changes to `laravel-marketplaceful` will be documented in this file.
+## [Unreleased](https://github.com/marketplaceful/laravel-marketplaceful/compare/v0.2.0...master)
 
-## 0.2.0 - 2021-01-21
+## [v0.2.0 (2021-01-21)](https://github.com/marketplaceful/laravel-marketplaceful/compare/v0.1.0...v0.2.0)
 
-- added account portal feature
+### Added
 
-## 0.1.0 - 2021-01-17
+- Account portal feature
 
-- initial release
+## v0.1.0 (2021-01-17)
+
+- Initial release
