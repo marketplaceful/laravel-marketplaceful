@@ -36,6 +36,18 @@
                             {{ __('Listings') }}
                         </x-mkt-navigation.portal-link>
 
+                        <x-mkt-navigation.portal-link href="{{ route('marketplaceful::portal.conversations.index') }}" :active="request()->routeIs('marketplaceful::portal.conversations.index')">
+                            {{ __('Conversations') }}
+                        </x-mkt-navigation.portal-link>
+
+                        <x-mkt-navigation.portal-link href="{{ route('marketplaceful::portal.orders.index') }}" :active="request()->routeIs('marketplaceful::portal.orders.index')">
+                            {{ __('Orders') }}
+                        </x-mkt-navigation.portal-link>
+
+                        <x-mkt-navigation.portal-link href="{{ route('marketplaceful::portal.sales.index') }}" :active="request()->routeIs('marketplaceful::portal.sales.index')">
+                            {{ __('Sales') }}
+                        </x-mkt-navigation.portal-link>
+
                         <x-mkt-navigation.portal-link href="{{ route('marketplaceful::portal.profile') }}" :active="request()->routeIs('marketplaceful::portal.profile')">
                             {{ __('Profile') }}
                         </x-mkt-navigation.portal-link>
@@ -94,6 +106,26 @@
                     <div class="mt-3 px-2 space-y-1">
                         <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.home') }}" :active="request()->routeIs('marketplaceful::portal.home')">
                             {{ __('Home') }}
+                        </x-mkt-navigation.responsive-portal-link>
+
+                        <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.listings.create') }}" :active="request()->routeIs('marketplaceful::portal.listings.create')">
+                            {{ __('New listing') }}
+                        </x-mkt-navigation.responsive-portal-link>
+
+                        <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.listings.index') }}" :active="request()->routeIs('marketplaceful::portal.listings.index')">
+                            {{ __('Listings') }}
+                        </x-mkt-navigation.responsive-portal-link>
+
+                        <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.conversations.index') }}" :active="request()->routeIs('marketplaceful::portal.conversations.index')">
+                            {{ __('Conversations') }}
+                        </x-mkt-navigation.responsive-portal-link>
+
+                        <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.orders.index') }}" :active="request()->routeIs('marketplaceful::portal.orders.index')">
+                            {{ __('Orders') }}
+                        </x-mkt-navigation.responsive-portal-link>
+
+                        <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.sales.index') }}" :active="request()->routeIs('marketplaceful::portal.sales.index')">
+                            {{ __('Sales') }}
                         </x-mkt-navigation.responsive-portal-link>
 
                         <x-mkt-navigation.responsive-portal-link href="{{ route('marketplaceful::portal.profile') }}" :active="request()->routeIs('marketplaceful::portal.profile')">

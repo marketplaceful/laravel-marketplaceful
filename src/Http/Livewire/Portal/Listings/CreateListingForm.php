@@ -41,7 +41,7 @@ class CreateListingForm extends Component
                 ->toArray()
         );
 
-        return redirect(route('marketplaceful::listings.index'));
+        return redirect(route('marketplaceful::portal.listings.index'));
     }
 
     public function getUserProperty()

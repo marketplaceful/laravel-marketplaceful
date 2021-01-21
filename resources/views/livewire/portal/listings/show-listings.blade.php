@@ -27,11 +27,6 @@
                                     <span">Edit listing</span>
                                 </a>
                             </div>
-                            <div class="-ml-px w-0 flex-1 flex">
-                                <a href="#" class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500">
-                                    <span">Close listing</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

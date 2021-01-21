@@ -152,8 +152,12 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-mkt-button>
-            Save
+        <x-mkt-form.action-message class="mr-3" on="saved">
+            {{ __('Saved.') }}
+        </x-mkt-form.action-message>
+
+        <x-mkt-button wire:loading.attr="disabled" wire:target="photo">
+            {{ __('Save') }}
         </x-mkt-button>
     </x-slot>
 </x-mkt-form-section>

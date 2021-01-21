@@ -23,11 +23,12 @@ class UpdateListing
             'uploads.*' => ['nullable', 'image', 'max:1024'],
             'tags' => ['nullable', 'sometimes', 'array'],
             'tags.*' => ['nullable', 'sometimes', 'exists:tags,id'],
-            'location' => ['nullable', 'array'],
-            'location.address' => ['required', 'string'],
-            'location.longitude' => ['required', 'numeric', 'between:-180,180'],
-            'location.latitude' => ['required', 'numeric', 'between:-90,90'],
+            'location' => ['nullable', 'sometimes', 'array'],
+            'location.address' => ['nullable', 'sometimes', 'string'],
+            'location.longitude' => ['nullable', 'sometimes', 'numeric', 'between:-180,180'],
+            'location.latitude' => ['nullable', 'sometimes', 'numeric', 'between:-90,90'],
         ])->validateWithBag('updateListing');
+
 
         if (isset($input['location'])) {
             $listing->updateLocation($input['location']);
