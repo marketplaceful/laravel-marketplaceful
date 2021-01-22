@@ -1,7 +1,7 @@
 # Marketplaceful - Self-host your marketplace software
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/marketplaceful/laravel-marketplaceful.svg?style=flat-square)](https://packagist.org/packages/marketplaceful/laravel-marketplaceful)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/marketplaceful/laravel-marketplaceful/run-tests?label=tests)](https://github.com/marketplaceful/laravel-marketplaceful/actions?query=workflow%3ATests+branch%3Amaster)
+![Tests](https://github.com/marketplaceful/laravel-marketplaceful/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/marketplaceful/laravel-marketplaceful.svg?style=flat-square)](https://packagist.org/packages/marketplaceful/laravel-marketplaceful)
 
 A web platform for quickly building online marketplaces built on Laravel.
