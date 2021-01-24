@@ -3,6 +3,7 @@
 namespace Marketplaceful\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Marketplaceful\Models\Tag;
 
 class TagFactory extends Factory
@@ -21,8 +22,11 @@ class TagFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->catchPhrase;
+
         return [
-            'name' => $this->faker->catchPhrase,
+            'name' => $name,
+            'slug' => Str::slug($name),
         ];
     }
 }

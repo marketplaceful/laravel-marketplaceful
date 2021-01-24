@@ -19,6 +19,12 @@ class CreateTag
             'slug' => $input['slug'] ?? null,
         ]);
 
+        if (isset($input['slug'])) {
+            $tag->forceFill([
+                'slug' => $input['slug'],
+            ])->save();
+        }
+
         return $tag;
     }
 }

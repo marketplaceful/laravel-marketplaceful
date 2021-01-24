@@ -1,31 +1,60 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use Marketplaceful\Actions\UpdateTag;
+use Marketplaceful\Models\Tag;
 use Marketplaceful\Tests\Fixtures\User;
 
 test('tag can be updated', function () {
     migrate();
 
+    $action = new UpdateTag;
+
     $tag = createTag();
 
     $user = User::first();
 
-    $action = new UpdateTag;
+    $action->update($user, $tag, [
+        'name' => '::name-updated::',
+        'slug' => '::slug-updated::',
+    ]);
 
-    $action->update($user, $tag, ['name' => 'Test Tag Updated']);
-
-    expect($tag->fresh()->name)->toBe('Test Tag Updated');
+    expect($tag->fresh()->name)->toBe('::name-updated::');
+    expect($tag->fresh()->slug)->toBe('::slug-updated::');
 });
 
-test('name is required', function () {
+test('validation tests', function (array $payload, callable $setup = null) {
     migrate();
+
+    if ($setup !== null) {
+        $setup();
+    };
+
+    $action = new UpdateTag;
 
     $tag = createTag();
 
     $user = User::first();
 
-    $action = new UpdateTag;
+    $action->update($user, $tag, $payload);
+})->with(function () {
+    $defaultPayload = [
+        'name' => '::name::',
+        'slug' => '::slug::',
+    ];
 
-    $action->update($user, $tag, ['name' => '']);
+    yield from [
+        'missing name' => [
+            'payload' => Arr::except($defaultPayload, 'name'),
+        ],
+        'slug already exists' => [
+            'payload' => $defaultPayload,
+            'setup' => function () use ($defaultPayload) {
+                Tag::factory()->create()->fill([
+                    'slug' => $defaultPayload['slug'],
+                ])->save();
+            },
+        ],
+    ];
 })->throws(ValidationException::class);

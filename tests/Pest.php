@@ -62,10 +62,13 @@ function createTag()
     $action = new \Marketplaceful\Actions\CreateTag;
 
     $user = \Marketplaceful\Tests\Fixtures\User::forceCreate([
-        'name' => 'Oliver Jimenez-Servin',
-        'email' => 'oliver@radiocubito.com',
-        'password' => 'secret',
+        'name' => '::name::',
+        'email' => 'valid@example.com',
+        'password' => '::password::',
     ]);
 
-    return $action->create($user, ['name' => 'Test Tag']);
+    return $action->create($user, [
+        'name' => '::name::',
+        'slug' => '::slug::',
+    ]);
 }

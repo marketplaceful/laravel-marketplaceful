@@ -17,7 +17,12 @@ class UpdateTag
 
         $tag->forceFill([
             'name' => $input['name'],
-            'slug' => $input['slug'] ?? null,
         ])->save();
+
+        if (isset($input['slug'])) {
+            $tag->forceFill([
+                'slug' => $input['slug'],
+            ])->save();
+        }
     }
 }
