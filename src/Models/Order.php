@@ -4,6 +4,7 @@ namespace Marketplaceful\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Traits\Unguarded;
 
 class Order extends Model
@@ -33,12 +34,12 @@ class Order extends Model
 
     public function customer()
     {
-        return $this->belongsTo(config('marketplaceful.user_model'));
+        return $this->belongsTo(Marketplaceful::userModel());
     }
 
     public function provider()
     {
-        return $this->belongsTo(config('marketplaceful.user_model'));
+        return $this->belongsTo(Marketplaceful::userModel());
     }
 
     public function conversation()

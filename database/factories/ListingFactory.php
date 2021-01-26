@@ -4,6 +4,7 @@ namespace Marketplaceful\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Listing;
 
 class ListingFactory extends Factory
@@ -23,7 +24,7 @@ class ListingFactory extends Factory
     public function definition()
     {
         return [
-            'author_id' => config('marketplaceful.user_model')::factory(),
+            'author_id' => Marketplaceful::userModel()::factory(),
             'title' => $this->faker->catchPhrase,
             'description' => $this->faker->paragraph,
             'price' => null,

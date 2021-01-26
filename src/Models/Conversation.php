@@ -4,6 +4,7 @@ namespace Marketplaceful\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Traits\Unguarded;
 
 class Conversation extends Model
@@ -17,7 +18,7 @@ class Conversation extends Model
 
     public function users()
     {
-        return $this->belongsToMany(config('marketplaceful.user_model'))
+        return $this->belongsToMany(Marketplaceful::userModel())
             ->withPivot('read_at')
             ->withTimestamps()
             ->oldest();

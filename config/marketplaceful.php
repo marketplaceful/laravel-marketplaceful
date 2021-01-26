@@ -3,14 +3,6 @@
 use Marketplaceful\Features;
 
 return [
-
-    'models' => [
-        /*
-         * The model you want to use as a User model.
-         */
-        'user' => env('MARKETPLACEFUL_USER_MODEL', App\Models\User::class),
-    ],
-
     /*
     * If you are using a Marketplacfeul Pro license,
     * leave this as true so the pro features are enabled.

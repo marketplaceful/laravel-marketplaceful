@@ -50,7 +50,7 @@ class Listing extends Model
 
     public function author()
     {
-        return $this->belongsTo(config('marketplaceful.user_model'));
+        return $this->belongsTo(Marketplaceful::userModel());
     }
 
     public function tags()

@@ -4,6 +4,7 @@ namespace Marketplaceful\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Traits\Unguarded;
 
 class Message extends Model
@@ -18,6 +19,6 @@ class Message extends Model
 
     public function user()
     {
-        return $this->belongsTo(config('marketplaceful.user_model'));
+        return $this->belongsTo(Marketplaceful::userModel());
     }
 }

@@ -68,7 +68,7 @@ class MakeUser extends Command
             return;
         }
 
-        config('marketplaceful.user_model')::forceCreate([
+        Marketplaceful::userModel()::forceCreate([
             'name' => $this->name,
             'email' => $this->email,
             'password' => Hash::make($this->password),
