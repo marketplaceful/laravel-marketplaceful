@@ -49,12 +49,12 @@ function createListing()
     $action = new \Marketplaceful\Actions\CreateListing;
 
     $user = \Marketplaceful\Tests\Fixtures\User::forceCreate([
-        'name' => 'Oliver Jimenez-Servin',
-        'email' => 'oliver@radiocubito.com',
-        'password' => 'secret',
+        'name' => '::name::',
+        'email' => 'valid@example.com',
+        'password' => '::password::',
     ]);
 
-    return $action->create($user, ['title' => 'Test Listing']);
+    return $action->create($user, ['title' => '::title::']);
 }
 
 function createTag()

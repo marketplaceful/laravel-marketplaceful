@@ -3,24 +3,21 @@
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
-use Marketplaceful\Actions\CreateListing;
-use Marketplaceful\Models\Listing;
+use Marketplaceful\Actions\UpdateListing;
 use Marketplaceful\Models\Tag;
 use Marketplaceful\Tests\Fixtures\User;
 
-test('listing can be created', function () {
+test('listing can be updated', function () {
     migrate();
 
-    $action = new CreateListing;
+    $action = new UpdateListing;
 
-    $user = User::forceCreate([
-        'name' => '::name::',
-        'email' => 'valid@example.com',
-        'password' => '::password::',
-    ]);
+    $listing = createListing();
 
-    $listing = $action->create($user, [
-        'title' => '::title::',
+    $user = User::first();
+
+    $action->update($user, $listing, [
+        'title' => '::title-updated::',
         'price' => '1234',
         'description' => '::description::',
         'image' => UploadedFile::fake()->image('image.jpeg'),
@@ -30,7 +27,15 @@ test('listing can be created', function () {
         'location' => ['address' => '::address::', 'longitude' => '0', 'latitude' => '0'],
     ]);
 
-    expect($listing)->toBeInstanceOf(Listing::class);
+    tap($listing->fresh(), function ($listing) {
+        expect($listing->title)->toBe('::title-updated::');
+        expect($listing->price)->toBe('123400');
+        expect($listing->description)->toBe('::description::');
+        expect($listing->feature_image_path)->not->toBeNull();
+        expect($listing->photo_paths)->not->toBeNull();
+        expect($listing->location_coordinates)->not->toBeNull();
+        expect(count($listing->tags))->toBe(1);
+    });
 });
 
 test('validation tests', function (array $payload, callable $setup = null) {
@@ -40,20 +45,16 @@ test('validation tests', function (array $payload, callable $setup = null) {
         $setup();
     };
 
-    $action = new CreateListing;
+    $action = new UpdateListing;
 
-    $user = User::forceCreate([
-        'name' => '::name::',
-        'email' => 'valid@example.com',
-        'password' => '::password::',
-    ]);
+    $listing = createListing();
 
-    Tag::factory()->create();
+    $user = User::first();
 
-    $action->create($user, $payload);
+    $action->update($user, $listing, $payload);
 })->with(function () {
     $defaultPayload = [
-        'title' => '::title::',
+        'title' => '::title-updated::',
         'price' => '1234',
         'description' => '::description::',
         'image' => UploadedFile::fake()->image('image.jpeg'),
