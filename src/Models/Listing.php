@@ -90,6 +90,11 @@ class Listing extends Model
         $this->update(['status' => 'draft']);
     }
 
+    public function markAsPendingApproval()
+    {
+        $this->update(['status' => 'pending_approval']);
+    }
+
     public function updateLocation(array $location)
     {
         $this->forceFill([
@@ -109,6 +114,11 @@ class Listing extends Model
     public function isDraft()
     {
         return $this->status === 'draft';
+    }
+
+    public function isPendingApproval()
+    {
+        return $this->status === 'pending_approval';
     }
 
     public function getFormattedPriceAttribute()

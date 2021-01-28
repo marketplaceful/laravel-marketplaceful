@@ -19,6 +19,11 @@ class Features
                Arr::get(static::$featureOptions, $feature.'.'.$option) === true;
     }
 
+    public static function hasListingApprovalFeature()
+    {
+        return static::enabled(static::listingApproval());
+    }
+
     public static function authentication()
     {
         return 'authentication';
@@ -27,5 +32,10 @@ class Features
     public static function settings()
     {
         return 'settings';
+    }
+
+    public static function listingApproval()
+    {
+        return 'listing-approval';
     }
 }

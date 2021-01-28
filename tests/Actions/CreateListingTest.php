@@ -2,6 +2,7 @@
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\ValidationException;
 use Marketplaceful\Actions\CreateListing;
 use Marketplaceful\Models\Listing;
@@ -31,6 +32,44 @@ test('listing can be created', function () {
     ]);
 
     expect($listing)->toBeInstanceOf(Listing::class);
+});
+
+test('listing is published when created if the listing approval feature is not enabled', function () {
+    migrate();
+
+    $action = new CreateListing;
+
+    $user = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'valid@example.com',
+        'password' => '::password::',
+    ]);
+
+    $listing = $action->create($user, [
+        'title' => '::title::',
+    ]);
+
+    expect($listing->isPublished())->toBeTrue();
+});
+
+test('listing is on pending approval when created if the listing approval feature is enabled', function () {
+    migrate();
+
+    Config::set('marketplaceful.features', ['listing-approval']);
+
+    $action = new CreateListing;
+
+    $user = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'valid@example.com',
+        'password' => '::password::',
+    ]);
+
+    $listing = $action->create($user, [
+        'title' => '::title::',
+    ]);
+
+    expect($listing->isPendingApproval())->toBeTrue();
 });
 
 test('validation tests', function (array $payload, callable $setup = null) {

@@ -46,6 +46,11 @@ class Marketplaceful
         return config('marketplaceful.pro');
     }
 
+    public static function hasListingApprovalFeature()
+    {
+        return Features::hasListingApprovalFeature();
+    }
+
     public static function formatAmount($amount, $currency = null, $locale = null)
     {
         $money = new Money($amount, new Currency(strtoupper($currency ?? config('marketplaceful.currency'))));

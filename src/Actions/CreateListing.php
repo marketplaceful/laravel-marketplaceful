@@ -4,6 +4,7 @@ namespace Marketplaceful\Actions;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Listing;
 
 class CreateListing
@@ -53,6 +54,12 @@ class CreateListing
                     fn ($tag, $key) => [$tag => ['order_column' => $key + 1]]
                 )
             );
+        }
+
+        if (Marketplaceful::hasListingApprovalFeature()) {
+            $listing->markAsPendingApproval();
+        } else {
+            $listing->markAsPublished();
         }
 
         return $listing;
