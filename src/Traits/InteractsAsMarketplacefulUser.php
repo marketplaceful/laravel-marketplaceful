@@ -64,6 +64,11 @@ trait InteractsAsMarketplacefulUser
         return $this->owner;
     }
 
+    public function scopeOwner($query)
+    {
+        return $query->where('owner', 1);
+    }
+
     public function belongsToConversation($conversation)
     {
         return $this->conversations->contains('id', $conversation->id);

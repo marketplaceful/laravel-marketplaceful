@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Listing;
+use Marketplaceful\Notifications\ListingToReview;
 
 class CreateListing
 {
@@ -58,6 +59,11 @@ class CreateListing
 
         if (Marketplaceful::hasListingApprovalFeature()) {
             $listing->markAsPendingApproval();
+
+            Marketplaceful::newUserModel()
+                ->owner()
+                ->first()
+                ->notify(new ListingToReview($listing));
         } else {
             $listing->markAsPublished();
         }

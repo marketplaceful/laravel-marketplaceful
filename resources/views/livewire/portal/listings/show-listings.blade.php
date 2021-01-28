@@ -13,6 +13,9 @@
                             <a href="{{ route('marketplaceful::portal.listings.show', $listing) }}" class="block">
                                 <p class="text-lg font-semibold text-gray-900">
                                     {{ $listing->title }}
+                                    @if ($listing->isPendingApproval())
+                                        <span class="text-xs">(Pending approval)</span>
+                                    @endif
                                 </p>
                                 <div class="mt-1">
                                     <span class="text-base text-gray-900">{{ $listing->formattedPrice }}</span>

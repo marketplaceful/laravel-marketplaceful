@@ -3,10 +3,13 @@
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Marketplaceful\Actions\CreateListing;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Listing;
 use Marketplaceful\Models\Tag;
+use Marketplaceful\Notifications\ListingToReview;
 use Marketplaceful\Tests\Fixtures\User;
 
 test('listing can be created', function () {
@@ -53,11 +56,22 @@ test('listing is published when created if the listing approval feature is not e
 });
 
 test('listing is on pending approval when created if the listing approval feature is enabled', function () {
+    Marketplaceful::useUserModel(User::class);
+
+    Notification::fake();
+
     migrate();
 
     Config::set('marketplaceful.features', ['listing-approval']);
 
     $action = new CreateListing;
+
+    $owner = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'validowner@example.com',
+        'password' => '::password::',
+        'owner' => 1,
+    ]);
 
     $user = User::forceCreate([
         'name' => '::name::',
@@ -70,6 +84,11 @@ test('listing is on pending approval when created if the listing approval featur
     ]);
 
     expect($listing->isPendingApproval())->toBeTrue();
+
+    Notification::assertSentTo(
+        $owner,
+        ListingToReview::class
+    );
 });
 
 test('validation tests', function (array $payload, callable $setup = null) {
