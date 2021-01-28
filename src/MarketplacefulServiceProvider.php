@@ -37,6 +37,12 @@ use Marketplaceful\Http\Livewire\Portal\Profile\UpdateProfileInformationForm;
 use Marketplaceful\Http\Livewire\Portal\Sales\ShowSale;
 use Marketplaceful\Http\Livewire\Portal\Sales\ShowSales;
 use Marketplaceful\Http\Livewire\Portal\Welcome;
+use Marketplaceful\Http\Livewire\Tags\CreateTag;
+use Marketplaceful\Http\Livewire\Tags\CreateTagForm;
+use Marketplaceful\Http\Livewire\Tags\DeleteTagForm;
+use Marketplaceful\Http\Livewire\Tags\ShowTag;
+use Marketplaceful\Http\Livewire\Tags\ShowTags;
+use Marketplaceful\Http\Livewire\Tags\UpdateTagForm;
 use Marketplaceful\Models\Listing;
 use Marketplaceful\Models\Order;
 use Marketplaceful\Policies\ListingPolicy;
@@ -55,6 +61,13 @@ class MarketplacefulServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/marketplaceful.php', 'marketplaceful');
 
         $this->app->afterResolving(BladeCompiler::class, function () {
+            Livewire::component('marketplaceful::tags.show-tags', ShowTags::class);
+            Livewire::component('marketplaceful::tags.create-tag', CreateTag::class);
+            Livewire::component('marketplaceful::tags.create-tag-form', CreateTagForm::class);
+            Livewire::component('marketplaceful::tags.show-tag', ShowTag::class);
+            Livewire::component('marketplaceful::tags.update-tag-form', UpdateTagForm::class);
+            Livewire::component('marketplaceful::tags.delete-tag-form', DeleteTagForm::class);
+
             Livewire::component('marketplaceful::portal.welcome', Welcome::class);
             Livewire::component('marketplaceful::portal.profile', ShowProfile::class);
             Livewire::component('marketplaceful::portal.update-profile-information-form', UpdateProfileInformationForm::class);
@@ -112,8 +125,8 @@ class MarketplacefulServiceProvider extends ServiceProvider
             $this->registerComponent('card.auth');
             $this->registerComponent('card.auth-logo');
 
-            $this->registerComponent('button');
             $this->registerComponent('label');
+
             $this->registerComponent('input');
             $this->registerComponent('input.error');
             $this->registerComponent('input.checkbox');
@@ -126,18 +139,47 @@ class MarketplacefulServiceProvider extends ServiceProvider
             $this->registerComponent('badge.status');
 
             $this->registerComponent('form.action-message');
+            $this->registerComponent('form.dashboard-section');
             $this->registerComponent('form.portal-section');
             $this->registerComponent('form.portal-section-title');
+            $this->registerComponent('form.dashboard-section-title');
+            $this->registerComponent('form.section-border');
+
+            $this->registerComponent('button');
             $this->registerComponent('button.secondary');
+            $this->registerComponent('button.danger');
 
             $this->registerComponent('header.portal');
 
+            $this->registerComponent('page-heading');
+
+            $this->registerComponent('back-link');
+
+            $this->registerComponent('dropdown');
+            $this->registerComponent('dropdown.link');
+
+            $this->registerComponent('navigation.dashboard-link');
             $this->registerComponent('navigation.portal-link');
+            $this->registerComponent('navigation.responsive-dashboard-link');
             $this->registerComponent('navigation.responsive-portal-link');
+
+            $this->registerComponent('table');
+            $this->registerComponent('table.cell');
+            $this->registerComponent('table.heading');
+            $this->registerComponent('table.row');
+
+            $this->registerComponent('navbar');
+            $this->registerComponent('application-mark');
+            $this->registerComponent('action-section');
+
+            $this->registerComponent('modal');
+            $this->registerComponent('modal.confirmation');
 
             Blade::component(\Marketplaceful\View\Components\Layouts\Html::class, 'mkt-layouts.html');
             Blade::component(\Marketplaceful\View\Components\Layouts\Guest::class, 'mkt-layouts.guest');
             Blade::component(\Marketplaceful\View\Components\Layouts\Guest::class, 'mkt-layouts.portal');
+            Blade::component(\Marketplaceful\View\Components\Layouts\Base::class, 'mkt-layouts.base');
+            Blade::component(\Marketplaceful\View\Components\Layouts\Dashboard::class, 'mkt-layouts.dashboard');
         });
     }
 
@@ -196,6 +238,6 @@ class MarketplacefulServiceProvider extends ServiceProvider
 
     protected function configureGates()
     {
-        Gate::define('viewMarketplaceful', fn ($user = null) => $user->belongsToStaff());
+        Gate::define('viewMarketplaceful', fn ($user = null) => $user->isOwner());
     }
 }

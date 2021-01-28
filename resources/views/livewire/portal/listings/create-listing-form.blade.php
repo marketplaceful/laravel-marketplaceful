@@ -149,4 +149,4 @@
             Create
         </x-mkt-button>
     </x-slot>
-</x-mkt-form-section>
+</x-mkt-form.portal-section>

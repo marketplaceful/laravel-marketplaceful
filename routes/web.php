@@ -13,11 +13,19 @@ use Marketplaceful\Http\Livewire\Portal\Orders\ShowOrders;
 use Marketplaceful\Http\Livewire\Portal\Profile\ShowProfile;
 use Marketplaceful\Http\Livewire\Portal\Sales\ShowSale;
 use Marketplaceful\Http\Livewire\Portal\Sales\ShowSales;
+use Marketplaceful\Http\Livewire\Tags\CreateTag;
+use Marketplaceful\Http\Livewire\Tags\ShowTag;
+use Marketplaceful\Http\Livewire\Tags\ShowTags;
 use Marketplaceful\Http\Middleware\Authorize;
 use Marketplaceful\Http\Middleware\UpdateUserLastSeenMiddleware;
 
 Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => ['auth', 'verified', Authorize::class, UpdateUserLastSeenMiddleware::class]], function () {
+        Route::get('/marketplaceful', fn () => redirect()->to(route('marketplaceful::listings.index')))->name('marketplaceful::dashboard');
+
+        Route::get('/marketplaceful/tags', ShowTags::class)->name('marketplaceful::tags.index');
+        Route::get('/marketplaceful/tags/create', CreateTag::class)->name('marketplaceful::tags.create');
+        Route::get('/marketplaceful/tags/{tag}', ShowTag::class)->name('marketplaceful::tags.show');
     });
 
     Route::group(['middleware' => ['auth', 'verified', UpdateUserLastSeenMiddleware::class]], function () {
