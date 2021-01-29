@@ -26,6 +26,7 @@ class Listing extends Model
         'pending_approval' => 'Pending Approval',
         'published' => 'Published',
         'closed' => 'Closed',
+        'rejected' => 'Rejected',
     ];
 
     protected $casts = [
@@ -95,6 +96,11 @@ class Listing extends Model
         $this->update(['status' => 'pending_approval']);
     }
 
+    public function markAsRejected()
+    {
+        $this->update(['status' => 'rejected']);
+    }
+
     public function updateLocation(array $location)
     {
         $this->forceFill([
@@ -119,6 +125,11 @@ class Listing extends Model
     public function isPendingApproval()
     {
         return $this->status === 'pending_approval';
+    }
+
+    public function isRejected()
+    {
+        return $this->status === 'rejected';
     }
 
     public function getFormattedPriceAttribute()
