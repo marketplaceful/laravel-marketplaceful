@@ -3,7 +3,9 @@
 namespace Marketplaceful\Actions;
 
 use Illuminate\Support\Facades\Gate;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Listing;
+use Marketplaceful\Notifications\ListingApproved;
 
 class PublishListing
 {
@@ -11,6 +13,12 @@ class PublishListing
     {
         Gate::forUser($user)->authorize('update', $listing);
 
-        return $listing->markAsPublished();
+        $listing->markAsPublished();
+
+        if (Marketplaceful::hasListingApprovalFeature()) {
+            $listing->author->notify(new ListingApproved($listing));
+        }
+
+        return;
     }
 }
