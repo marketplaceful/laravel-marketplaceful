@@ -4,6 +4,8 @@ namespace Marketplaceful\Actions;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Marketplaceful\Marketplaceful;
+use Marketplaceful\Notifications\EditedListingToReview;
 
 class UpdateListing
 {
@@ -52,8 +54,17 @@ class UpdateListing
 
         $listing->forceFill([
             'title' => $input['title'],
-            'description' => $input['description'],
+            'description' => $input['description'] ?? null,
             'price_for_editing' => $input['price'] ?? null,
         ])->save();
+
+        if (Marketplaceful::hasListingApprovalFeature()) {
+            $listing->markAsPendingApproval();
+
+            Marketplaceful::newUserModel()
+                ->owner()
+                ->first()
+                ->notify(new EditedListingToReview($listing));
+        }
     }
 }

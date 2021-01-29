@@ -2,10 +2,18 @@
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Marketplaceful\Actions\UpdateListing;
+use Marketplaceful\Marketplaceful;
 use Marketplaceful\Models\Tag;
+use Marketplaceful\Notifications\EditedListingToReview;
 use Marketplaceful\Tests\Fixtures\User;
+
+beforeEach(function () {
+    Marketplaceful::useUserModel(User::class);
+});
 
 test('listing can be updated', function () {
     migrate();
@@ -14,9 +22,7 @@ test('listing can be updated', function () {
 
     $listing = createListing();
 
-    $user = User::first();
-
-    $action->update($user, $listing, [
+    $action->update($listing->author, $listing, [
         'title' => '::title-updated::',
         'price' => '1234',
         'description' => '::description::',
@@ -36,6 +42,33 @@ test('listing can be updated', function () {
         expect($listing->location_coordinates)->not->toBeNull();
         expect(count($listing->tags))->toBe(1);
     });
+});
+
+test('listing is on pending approval when edited if the listing approval feature is enabled', function () {
+    Notification::fake();
+
+    migrate();
+
+    Config::set('marketplaceful.features', ['listing-approval']);
+
+    $owner = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'validowner@example.com',
+        'password' => '::password::',
+        'owner' => 1,
+    ]);
+
+    $listing = createListing();
+
+    $action = new UpdateListing;
+
+    $action->update($listing->author, $listing, [
+        'title' => '::title-updated::',
+    ]);
+
+    expect($listing->isPendingApproval())->toBeTrue();
+
+    Notification::assertSentTo($owner, EditedListingToReview::class);
 });
 
 test('validation tests', function (array $payload, callable $setup = null) {
