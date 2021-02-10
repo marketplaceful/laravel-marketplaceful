@@ -1,6 +1,8 @@
 # Release Notes
 
-## [Unreleased](https://github.com/marketplaceful/laravel-marketplaceful/compare/v0.2.0...master)
+## [Unreleased](https://github.com/marketplaceful/laravel-marketplaceful/compare/v0.3.0...master)
+
+## [v0.3.0 (2021-02-09)](https://github.com/marketplaceful/laravel-marketplaceful/compare/v0.2.0...v0.3.0)
 
 ### Added
 
