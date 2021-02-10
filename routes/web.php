@@ -23,6 +23,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => ['auth', 'verified', Authorize::class, UpdateUserLastSeenMiddleware::class]], function () {
         Route::get('/marketplaceful', fn () => redirect()->to(route('marketplaceful::listings.index')))->name('marketplaceful::dashboard');
 
+        Route::get('/marketplaceful/listings', \Marketplaceful\Http\Livewire\Listings\ShowListings::class)->name('marketplaceful::listings.index');
+        Route::get('/marketplaceful/listings/{listing}', \Marketplaceful\Http\Livewire\Listings\ShowListing::class)->name('marketplaceful::listings.show');
+
         Route::get('/marketplaceful/tags', ShowTags::class)->name('marketplaceful::tags.index');
         Route::get('/marketplaceful/tags/create', CreateTag::class)->name('marketplaceful::tags.create');
         Route::get('/marketplaceful/tags/{tag}', ShowTag::class)->name('marketplaceful::tags.show');

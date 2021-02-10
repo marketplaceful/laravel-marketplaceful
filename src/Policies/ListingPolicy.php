@@ -23,4 +23,14 @@ class ListingPolicy
     {
         return $listing->author->is($user);
     }
+
+    public function publish($user, Listing $listing)
+    {
+        return $user->isOwner();
+    }
+
+    public function reject($user, Listing $listing)
+    {
+        return $user->isOwner();
+    }
 }

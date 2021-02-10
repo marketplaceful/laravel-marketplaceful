@@ -17,6 +17,13 @@ test('listing can be marked as published', function () {
 
     $action = new PublishListing;
 
+    $owner = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'validowner@example.com',
+        'password' => '::password::',
+        'owner' => 1,
+    ]);
+
     $user = User::forceCreate([
         'name' => '::name::',
         'email' => 'valid@example.com',
@@ -28,7 +35,7 @@ test('listing can be marked as published', function () {
         'title' => '::title::',
     ]);
 
-    $action->publish($user, $listing);
+    $action->publish($owner, $listing);
 
     expect($listing->fresh()->published_at)->not->toBeNull();
     expect($listing->fresh()->status)->toEqual('published');
@@ -43,6 +50,13 @@ test('notify listing author of an approved listing', function () {
 
     $action = new PublishListing;
 
+    $owner = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'validowner@example.com',
+        'password' => '::password::',
+        'owner' => 1,
+    ]);
+
     $user = User::forceCreate([
         'name' => '::name::',
         'email' => 'valid@example.com',
@@ -54,7 +68,7 @@ test('notify listing author of an approved listing', function () {
         'title' => '::title::',
     ]);
 
-    $action->publish($user, $listing);
+    $action->publish($owner, $listing);
 
     Notification::assertSentTo(
         $listing->author,

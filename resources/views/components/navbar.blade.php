@@ -10,6 +10,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
+                        <x-mkt-navigation.dashboard-link href="{{ route('marketplaceful::listings.index') }}" :active="request()->routeIs('marketplaceful::listings.*')">
+                            Listings
+                        </x-mkt-navigation.dashboard-link>
+
                         <x-mkt-navigation.dashboard-link href="{{ route('marketplaceful::tags.index') }}" :active="request()->routeIs('marketplaceful::tags.*')">
                             Tags
                         </x-mkt-navigation.dashboard-link>

@@ -5,6 +5,9 @@
 ### Added
 
 - Listing actions tests
+- Listing approval feature
+- Tag management
+- Listing management
 
 ### Changed
 

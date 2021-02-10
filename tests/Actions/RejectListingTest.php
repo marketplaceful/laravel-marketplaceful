@@ -18,6 +18,13 @@ test('listing can be marked as rejected', function () {
 
     $action = new RejectListing;
 
+    $owner = User::forceCreate([
+        'name' => '::name::',
+        'email' => 'validowner@example.com',
+        'password' => '::password::',
+        'owner' => 1,
+    ]);
+
     $user = User::forceCreate([
         'name' => '::name::',
         'email' => 'valid@example.com',
@@ -29,7 +36,7 @@ test('listing can be marked as rejected', function () {
         'title' => '::title::',
     ]);
 
-    $action->reject($user, $listing);
+    $action->reject($owner, $listing);
 
     expect($listing->fresh()->status)->toEqual('rejected');
 

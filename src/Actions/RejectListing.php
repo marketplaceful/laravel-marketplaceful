@@ -10,7 +10,7 @@ class RejectListing
 {
     public function reject($user, Listing $listing)
     {
-        Gate::forUser($user)->authorize('update', $listing);
+        Gate::forUser($user)->authorize('reject', $listing);
 
         $listing->markAsRejected();
 

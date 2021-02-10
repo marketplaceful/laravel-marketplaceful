@@ -11,7 +11,7 @@ class PublishListing
 {
     public function publish($user, Listing $listing)
     {
-        Gate::forUser($user)->authorize('update', $listing);
+        Gate::forUser($user)->authorize('publish', $listing);
 
         $listing->markAsPublished();
 

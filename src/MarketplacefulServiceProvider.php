@@ -61,6 +61,16 @@ class MarketplacefulServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/marketplaceful.php', 'marketplaceful');
 
         $this->app->afterResolving(BladeCompiler::class, function () {
+            Livewire::component('marketplaceful::listings.show-listings', \Marketplaceful\Http\Livewire\Listings\ShowListings::class);
+            Livewire::component('marketplaceful::listings.show-listing', \Marketplaceful\Http\Livewire\Listings\ShowListing::class);
+            Livewire::component('marketplaceful::listings.update-listing-form', \Marketplaceful\Http\Livewire\Listings\UpdateListingForm::class);
+            Livewire::component('marketplaceful::listings.update-listing-settings-form', \Marketplaceful\Http\Livewire\Listings\UpdateListingSettingsForm::class);
+            Livewire::component('marketplaceful::listings.update-listing-metadata-form', \Marketplaceful\Http\Livewire\Listings\UpdateListingMetadataForm::class);
+            Livewire::component('marketplaceful::listings.publish-listing-form', \Marketplaceful\Http\Livewire\Listings\PublishListingForm::class);
+            Livewire::component('marketplaceful::listings.un-publish-listing-form', \Marketplaceful\Http\Livewire\Listings\UnPublishListingForm::class);
+            Livewire::component('marketplaceful::listings.delete-listing-form', \Marketplaceful\Http\Livewire\Listings\DeleteListingForm::class);
+            Livewire::component('marketplaceful::listings.reject-listing-form', \Marketplaceful\Http\Livewire\Listings\RejectListingForm::class);
+
             Livewire::component('marketplaceful::tags.show-tags', ShowTags::class);
             Livewire::component('marketplaceful::tags.create-tag', CreateTag::class);
             Livewire::component('marketplaceful::tags.create-tag-form', CreateTagForm::class);
@@ -174,6 +184,9 @@ class MarketplacefulServiceProvider extends ServiceProvider
 
             $this->registerComponent('modal');
             $this->registerComponent('modal.confirmation');
+
+            $this->registerComponent('tab');
+            $this->registerComponent('tab.link');
 
             Blade::component(\Marketplaceful\View\Components\Layouts\Html::class, 'mkt-layouts.html');
             Blade::component(\Marketplaceful\View\Components\Layouts\Guest::class, 'mkt-layouts.guest');
