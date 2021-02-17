@@ -29,13 +29,18 @@ class Conversation extends Model
         return $this->users()->where('user_id', '!=', auth()->id());
     }
 
+    public function receiver()
+    {
+        return $this->users()->where('user_id', '!=', auth()->id())->first();
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class)->latest();
     }
 
-    public function order()
+    public function listing()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Listing::class);
     }
 }

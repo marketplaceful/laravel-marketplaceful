@@ -1,7 +1,7 @@
 @props(['submit'])
 
 <form {{ $attributes }} wire:submit.prevent="{{ $submit }}">
-    <div class="rounded-lg bg-white overflow-hidden shadow">
+    <div class="rounded-lg border border-gray-200 bg-white overflow-hidden shadow-sm">
         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
             <x-mkt-form.portal-section-title>
                 <x-slot name="title">{{ $title }}</x-slot>

@@ -1,9 +1,7 @@
-<div>
-    @foreach ($messages as $message)
-        @if (auth()->user()->ownsMessage($message))
-            <livewire:marketplaceful::portal.conversations.message-own :message="$message" :key="$message->id" />
-        @else
+<div class="flow-root">
+    <ul class="-mb-8">
+        @foreach ($messages as $message)
             <livewire:marketplaceful::portal.conversations.message :message="$message" :key="$message->id" />
-        @endif
-    @endforeach
+        @endforeach
+    </ul>
 </div>

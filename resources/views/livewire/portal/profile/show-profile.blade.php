@@ -1,4 +1,8 @@
-<div>
+<x-mkt-portal>
+    <x-slot name="header">
+        <x-mkt-navbar.portal />
+    </x-slot>
+
     <h1 class="sr-only">Profile</h1>
 
     <div class="grid grid-cols-1 gap-4">
@@ -10,4 +14,4 @@
             <livewire:marketplaceful::portal.update-password-form />
         @endif
     </div>
-</div>
+</x-mkt-portal>

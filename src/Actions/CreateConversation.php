@@ -5,19 +5,21 @@ namespace Marketplaceful\Actions;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Marketplaceful\Models\Conversation;
 
 class CreateConversation
 {
-    public function create($user, $order, array $input)
+    public function create($user, $listing, array $input)
     {
-        Gate::forUser($user)->authorize('createConversation', $order);
+        Gate::forUser($user)->authorize('createConversation', $listing);
 
         Validator::make($input, [
             'body' => 'required',
         ])->validateWithBag('createConversation');
 
-        $conversation = $order->conversation()->create([
+        $conversation = Conversation::create([
             'uuid' => Str::uuid(),
+            'listing_id' => $listing->id,
             'last_message_at' => now(),
         ]);
 
@@ -28,7 +30,7 @@ class CreateConversation
 
         $conversation->users()->sync([
             $user->id,
-            $order->provider->id,
+            $listing->author->id,
         ]);
 
         return $conversation;

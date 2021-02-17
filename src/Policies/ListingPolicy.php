@@ -33,4 +33,9 @@ class ListingPolicy
     {
         return $user->isOwner();
     }
+
+    public function createConversation($user, Listing $listing)
+    {
+        return $user->id !== $listing->author_id;
+    }
 }

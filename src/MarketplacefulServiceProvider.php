@@ -18,24 +18,16 @@ use Marketplaceful\Http\Livewire\Portal\Conversations\MessageOwn;
 use Marketplaceful\Http\Livewire\Portal\Conversations\ReplyConversationForm;
 use Marketplaceful\Http\Livewire\Portal\Conversations\ShowConversation;
 use Marketplaceful\Http\Livewire\Portal\Conversations\ShowConversations;
-use Marketplaceful\Http\Livewire\Portal\Listings\CheckoutForm;
+use Marketplaceful\Http\Livewire\Portal\Listings\ContactForm;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListingForm;
-use Marketplaceful\Http\Livewire\Portal\Listings\ShowCheckout;
+use Marketplaceful\Http\Livewire\Portal\Listings\ShowContact;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListings;
 use Marketplaceful\Http\Livewire\Portal\Listings\UpdateListingForm;
-use Marketplaceful\Http\Livewire\Portal\Orders\AcceptOrderForm;
-use Marketplaceful\Http\Livewire\Portal\Orders\DeclineOrderForm;
-use Marketplaceful\Http\Livewire\Portal\Orders\DeliverOrderForm;
-use Marketplaceful\Http\Livewire\Portal\Orders\OrderList;
-use Marketplaceful\Http\Livewire\Portal\Orders\ShowOrder;
-use Marketplaceful\Http\Livewire\Portal\Orders\ShowOrders;
 use Marketplaceful\Http\Livewire\Portal\Profile\ShowProfile;
 use Marketplaceful\Http\Livewire\Portal\Profile\UpdatePasswordForm;
 use Marketplaceful\Http\Livewire\Portal\Profile\UpdateProfileInformationForm;
-use Marketplaceful\Http\Livewire\Portal\Sales\ShowSale;
-use Marketplaceful\Http\Livewire\Portal\Sales\ShowSales;
 use Marketplaceful\Http\Livewire\Portal\Welcome;
 use Marketplaceful\Http\Livewire\Tags\CreateTag;
 use Marketplaceful\Http\Livewire\Tags\CreateTagForm;
@@ -88,8 +80,8 @@ class MarketplacefulServiceProvider extends ServiceProvider
             Livewire::component('marketplaceful::portal.listings.create-listing-form', CreateListingForm::class);
             Livewire::component('marketplaceful::portal.listings.show-listing', ShowListing::class);
             Livewire::component('marketplaceful::portal.listings.update-listing-form', UpdateListingForm::class);
-            Livewire::component('marketplaceful::portal.listings.show-checkout', ShowCheckout::class);
-            Livewire::component('marketplaceful::portal.listings.checkout-form', CheckoutForm::class);
+            Livewire::component('marketplaceful::portal.listings.show-contact', ShowContact::class);
+            Livewire::component('marketplaceful::portal.listings.contact-form', ContactForm::class);
 
             Livewire::component('marketplaceful::portal.conversations.show-conversations', ShowConversations::class);
             Livewire::component('marketplaceful::portal.conversations.show-conversation', ShowConversation::class);
@@ -99,16 +91,6 @@ class MarketplacefulServiceProvider extends ServiceProvider
             Livewire::component('marketplaceful::portal.conversations.message-list', MessageList::class);
             Livewire::component('marketplaceful::portal.conversations.message-own', MessageOwn::class);
             Livewire::component('marketplaceful::portal.conversations.reply-conversation-form', ReplyConversationForm::class);
-
-            Livewire::component('marketplaceful::portal.orders.show-orders', ShowOrders::class);
-            Livewire::component('marketplaceful::portal.orders.show-order', ShowOrder::class);
-            Livewire::component('marketplaceful::portal.orders.accept-order-form', AcceptOrderForm::class);
-            Livewire::component('marketplaceful::portal.orders.decline-order-form', DeclineOrderForm::class);
-            Livewire::component('marketplaceful::portal.orders.deliver-order-form', DeliverOrderForm::class);
-            Livewire::component('marketplaceful::portal.orders.order-list', OrderList::class);
-
-            Livewire::component('marketplaceful::portal.sales.show-sales', ShowSales::class);
-            Livewire::component('marketplaceful::portal.sales.show-sale', ShowSale::class);
         });
     }
 
@@ -151,6 +133,7 @@ class MarketplacefulServiceProvider extends ServiceProvider
             $this->registerComponent('form.action-message');
             $this->registerComponent('form.dashboard-section');
             $this->registerComponent('form.portal-section');
+            $this->registerComponent('form.portal-section-simple');
             $this->registerComponent('form.portal-section-title');
             $this->registerComponent('form.dashboard-section-title');
             $this->registerComponent('form.section-border');
@@ -187,6 +170,9 @@ class MarketplacefulServiceProvider extends ServiceProvider
 
             $this->registerComponent('tab');
             $this->registerComponent('tab.link');
+
+            $this->registerComponent('portal');
+            $this->registerComponent('navbar.portal');
 
             Blade::component(\Marketplaceful\View\Components\Layouts\Html::class, 'mkt-layouts.html');
             Blade::component(\Marketplaceful\View\Components\Layouts\Guest::class, 'mkt-layouts.guest');

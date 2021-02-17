@@ -26,7 +26,7 @@ class ShowConversation extends Component
     {
         return view('marketplaceful::livewire.portal.conversations.show-conversation', [
             'conversation' => $this->conversation,
-            'listing' => $this->conversation->order->listing,
+            'listing' => $this->conversation->listing,
         ])->layout('marketplaceful::layouts.portal');
     }
 }
