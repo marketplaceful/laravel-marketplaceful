@@ -35,7 +35,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/portal/listings/{listing}', ShowListing::class)->name('marketplaceful::portal.listings.show');
         Route::get('/portal/listings/{listing}/contact', ShowContact::class)->name('marketplaceful::portal.listings.contact.show');
 
-        Route::get('/portal/conversations', ShowConversations::class)->name('marketplaceful::portal.conversations.index');
-        Route::get('/portal/conversations/{conversation:uuid}', ShowConversation::class)->name('marketplaceful::portal.conversations.show');
+        Route::get('/portal/messages', ShowConversations::class)->name('marketplaceful::portal.messages.index');
+        Route::get('/portal/messages/{conversation:uuid}', ShowConversation::class)->name('marketplaceful::portal.messages.show');
     });
 });

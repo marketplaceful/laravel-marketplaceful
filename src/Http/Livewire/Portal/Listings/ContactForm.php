@@ -19,7 +19,7 @@ class ContactForm extends Component
 
         $conversation = $creator->create(Auth::user(), $this->listing, ['body' => $this->message]);
 
-        return redirect(route('marketplaceful::portal.conversations.show', $conversation));
+        return redirect(route('marketplaceful::portal.messages.show', $conversation));
     }
 
     public function render()
