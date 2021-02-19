@@ -12,7 +12,7 @@
                                             <img class="h-10 w-10 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white" src="{{ $conversation->receiver()->profile_photo_url }}" alt="">
 
                                             <span class="absolute -bottom-0.5 -right-1 bg-white rounded-tl px-0.5 py-px">
-                                                <img class="h-5 h-5" src="{{ $conversation->listing->featureImageUrl }}" alt="">
+                                                <img class="h-5 w-5 object-cover" src="{{ $conversation->listing->featureImageUrl }}" alt="">
                                             </span>
                                         </div>
                                     </div>

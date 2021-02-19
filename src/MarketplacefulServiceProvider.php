@@ -21,6 +21,7 @@ use Marketplaceful\Http\Livewire\Portal\Conversations\ShowConversations;
 use Marketplaceful\Http\Livewire\Portal\Listings\ContactForm;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\CreateListingForm;
+use Marketplaceful\Http\Livewire\Portal\Listings\DeleteListingForm;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowContact;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListings;
@@ -82,6 +83,8 @@ class MarketplacefulServiceProvider extends ServiceProvider
             Livewire::component('marketplaceful::portal.listings.update-listing-form', UpdateListingForm::class);
             Livewire::component('marketplaceful::portal.listings.show-contact', ShowContact::class);
             Livewire::component('marketplaceful::portal.listings.contact-form', ContactForm::class);
+            Livewire::component('marketplaceful::portal.listings.show-remove-listing', ShowRemoveListing::class);
+            Livewire::component('marketplaceful::portal.listings.delete-listing-form', DeleteListingForm::class);
 
             Livewire::component('marketplaceful::portal.conversations.show-conversations', ShowConversations::class);
             Livewire::component('marketplaceful::portal.conversations.show-conversation', ShowConversation::class);

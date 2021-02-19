@@ -9,7 +9,7 @@ test('listing can be deleted', function () {
 
     $action = new DeleteListing;
 
-    $action->delete($listing);
+    $action->delete($listing->author, $listing);
 
     expect($listing->fresh())->toBeNull();
 });

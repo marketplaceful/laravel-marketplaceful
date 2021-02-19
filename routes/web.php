@@ -8,6 +8,7 @@ use Marketplaceful\Http\Livewire\Portal\Listings\CreateListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowContact;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListing;
 use Marketplaceful\Http\Livewire\Portal\Listings\ShowListings;
+use Marketplaceful\Http\Livewire\Portal\Listings\ShowRemoveListing;
 use Marketplaceful\Http\Livewire\Portal\Profile\ShowProfile;
 use Marketplaceful\Http\Livewire\Tags\CreateTag;
 use Marketplaceful\Http\Livewire\Tags\ShowTag;
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('/portal/listings/create', CreateListing::class)->name('marketplaceful::portal.listings.create');
         Route::get('/portal/listings/{listing}', ShowListing::class)->name('marketplaceful::portal.listings.show');
         Route::get('/portal/listings/{listing}/contact', ShowContact::class)->name('marketplaceful::portal.listings.contact.show');
+        Route::get('/portal/listings/{listing}/remove', ShowRemoveListing::class)->name('marketplaceful::portal.listings.remove.show');
 
         Route::get('/portal/messages', ShowConversations::class)->name('marketplaceful::portal.messages.index');
         Route::get('/portal/messages/{conversation:uuid}', ShowConversation::class)->name('marketplaceful::portal.messages.show');

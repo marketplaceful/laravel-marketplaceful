@@ -39,10 +39,10 @@
                 <div class="hidden sm:block">
                     <div class="border-b border-gray-200">
                         <nav class="-mb-px flex space-x-8" aria-label="Tabs">
-                            <a href="{{ route('marketplaceful::portal.listings.show', $listing) }}" class="border-gray-400 text-gray-800 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <a href="{{ route('marketplaceful::portal.listings.show', $listing) }}" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300  whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                                 Edit
                             </a>
-                            <a href="{{ route('marketplaceful::portal.listings.remove.show', $listing) }}" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                            <a href="{{ route('marketplaceful::portal.listings.remove.show', $listing) }}" class="border-gray-400 text-gray-800 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                                 Remove
                             </a>
                         </nav>
@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <livewire:marketplaceful::portal.listings.update-listing-form :listing="$listing" />
+            <livewire:marketplaceful::portal.listings.delete-listing-form :listing="$listing" />
         </div>
     </div>
 </x-mkt-portal>

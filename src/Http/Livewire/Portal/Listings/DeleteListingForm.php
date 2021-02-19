@@ -1,6 +1,6 @@
 <?php
 
-namespace Marketplaceful\Http\Livewire\Listings;
+namespace Marketplaceful\Http\Livewire\Portal\Listings;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -9,8 +9,6 @@ use Marketplaceful\Actions\DeleteListing;
 class DeleteListingForm extends Component
 {
     public $listing;
-
-    public $confirmingListingDeletion = false;
 
     public function mount($listing)
     {
@@ -21,11 +19,11 @@ class DeleteListingForm extends Component
     {
         $deleter->delete(Auth::user(), $this->listing);
 
-        return redirect()->route('marketplaceful::listings.index');
+        return redirect()->route('marketplaceful::portal.home');
     }
 
     public function render()
     {
-        return view('marketplaceful::livewire.listings.delete-listing-form');
+        return view('marketplaceful::livewire.portal.listings.delete-listing-form');
     }
 }

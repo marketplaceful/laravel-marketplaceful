@@ -24,6 +24,11 @@ class ListingPolicy
         return $listing->author->is($user);
     }
 
+    public function delete($user, Listing $listing)
+    {
+        return $listing->author->is($user) || $user->isOwner();
+    }
+
     public function publish($user, Listing $listing)
     {
         return $user->isOwner();
